@@ -8,7 +8,8 @@ class Rover(object):
         self.direction = "N"
 
     def move(self):
-        pass
+        if self.direction == "N":
+            self.y += 1
 
 
 

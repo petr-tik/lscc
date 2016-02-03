@@ -14,7 +14,7 @@ class Rover(object):
 
 class testRover(unittest.TestCase):
     def setUp(self):
-        self.rover = Rover([0,0], "N")
+        self.rover = Rover(0, 0, "N")
 
     def test_dir(self):        
         self.direction = self.rover.direction
