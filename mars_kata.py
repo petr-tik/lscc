@@ -11,11 +11,16 @@ class Rover(object):
 
 
 class testRover(unittest.TestCase):
-    def test_dir(self):
-        rover = Rover((0,0), "N")        
-        self.direction = rover.direction
+    def setUp(self):
+        self.rover = Rover((0,0), "N")
+
+    def test_dir(self):        
+        self.direction = self.rover.direction
         self.assertEqual(self.direction, "N")
 
+    def test_pos(self):
+        self.position = self.rover.position
+        self.assertEqual(self.position, (0,0))
 
 if __name__ == '__main__':
     unittest.main()
