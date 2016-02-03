@@ -7,12 +7,13 @@ class easy(unittest.TestCase):
 class Rover(object):
     def __init__(self, position, direction):
         self.position = (0,0)
-        self.direction = N
+        self.direction = "N"
 
 
-
-class testRover(unittest.TestCase);
-    pass    
+class testRover(unittest.TestCase):
+    def __init__(self):
+        self.direction = Rover.direction()
+        self.assertEqual(self.direction, "N")
 
 
 if __name__ == '__main__':
