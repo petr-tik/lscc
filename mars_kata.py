@@ -11,8 +11,9 @@ class Rover(object):
 
 
 class testRover(unittest.TestCase):
-    def __init__(self):
-        self.direction = Rover.direction()
+    def test_dir(self):
+        rover = Rover((0,0), "N")        
+        self.direction = rover.direction
         self.assertEqual(self.direction, "N")
 
 
