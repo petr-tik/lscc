@@ -10,12 +10,16 @@ class Rover(object):
     def move(self, direction):
         if self.direction == "N":
             self.y += 1
+            return self.y
         elif self.direction == "S":
             self.y -= 1
+            return self.y
         elif self.direction == "W":
             self.x -= 1
+            return self.x
         elif self.direction == "E":
             self.x += 1
+            return self.x
 
 
 class testRover(unittest.TestCase):
@@ -31,14 +35,12 @@ class testRover(unittest.TestCase):
         self.assertEqual(self.x, 0)
 
     def test_move(self):
-#        self.move_N = self.rover.move("N")
-#        self.assertEqual(self.move_N, self.rover.y)    
-        pass
+        self.move_N = self.rover.move("N")
+        self.assertEqual(self.move_N, self.rover.y)    
+        
 
 if __name__ == '__main__':
     unittest.main()
 
-
-[n, e, s, w]
 
 
