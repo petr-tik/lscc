@@ -34,10 +34,20 @@ class testRover(unittest.TestCase):
         self.x = self.rover.x
         self.assertEqual(self.x, 0)
 
-    def test_move(self):
+    def test_move_N(self):
         self.move_N = self.rover.move("N")
         self.assertEqual(self.move_N, self.rover.y)    
+        
+    def test_move_W(self):
+ #       self.move_W = self.rover.move("W")
+ #       self.assertEqual(self.move_W, self.rover.x)    
         pass
+    def test_move_E(self):
+        self.move_E = self.rover.move("E")
+        self.assertEqual(self.move_E, self.rover.x)    
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
