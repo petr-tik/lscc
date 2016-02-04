@@ -7,9 +7,9 @@ import unittest
 
 class Rover(object):
     def __init__(self, x, y, direction):
-        self.x = 0
-        self.y = 0
-        self.direction = "N"
+        self.x = x
+        self.y = y
+        self.direction = direction
 
     def rotate(self, way):
         options = ["N", "W", "S", "E"]
@@ -21,31 +21,17 @@ class Rover(object):
             idx_r = ((options.index(self.direction) - 1) % 4)
             self.direction = options[idx_r]
 
+
+
     def move(self):
         if self.direction == "N":
             self.y += 1
-            return self.y
         elif self.direction == "S":
             self.y -= 1
-            return self.y
         elif self.direction == "W":
             self.x -= 1
-            return self.x
         elif self.direction == "E":
             self.x += 1
-            return self.x
-
-
-
-
-r = Rover(0,0,"N")
-for x in xrange(10):
-
-    print "and now I am facing {}".format(r.direction)
-    print "rotating right"
-    r.rotate("R")
-    print "and now I am facing {}".format(r.direction)
-    
 
 
 
@@ -54,31 +40,42 @@ class testRover(unittest.TestCase):
         self.rover = Rover(0, 0, "N")
         
     def test_dir(self):        
-        self.direction = self.rover.direction
-        self.assertEqual(self.direction, "N")
+        direction = self.rover.direction
+        self.assertEqual(direction, "N")
 
     def test_pos(self):
-        self.x = self.rover.x
-        self.assertEqual(self.x, 0)
-
-    def test_move_N(self):
-        move_N = self.rover.move()
-        self.assertEqual(move_N, self.rover.y)    
+        x = self.rover.x
+        self.assertEqual(x, 0)
         
-    def test_move_W(self):
+    def test_move(self):
+        if self.rover.direction == "N":
+            before = self.rover.y
+            self.rover.move()
+            after = self.rover.y
+            self.assertEqual(before + 1, after)      
+        """elif self.rover.direction == "S":
+            self.y -= 1
+            return self.y
+        elif self.rover.direction == "W":
+            self.x -= 1
+            return self.x
+        elif self.rover.direction == "E":
+            self.x += 1
+            return self.x
+"""
 #        move_W = self.rover.move()
  #       self.assertEqual(move_W, self.rover.x)    
-        pass
+   
 
-
-
-    def test_move_E(self):
-        #move_E = self.rover.move()
-        #self.assertEqual(move_E, self.rover.x)    
-        pass
 
     def test_rotate(self):
-        pass
+        # successfully tested ability of the rover to rotate around its own axis
+
+        dir1 = self.rover.direction        
+        for x in xrange(4):
+            self.rover.rotate("L")
+        dir2 = self.rover.direction    
+        self.assertEqual(dir1, dir2)
 
 
 
