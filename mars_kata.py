@@ -97,7 +97,7 @@ class testRover(unittest.TestCase):
         self.rover.read("LLM")
         self.assertEqual(before_y - 1, self.rover.y)
         self.assertEqual(self.rover.direction, "S")      
-
+        
 
 if __name__ == '__main__':
     unittest.main()
