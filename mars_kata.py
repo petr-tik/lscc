@@ -53,7 +53,9 @@ class testRover(unittest.TestCase):
             self.rover.move()
             after = self.rover.y
             self.assertEqual(before + 1, after)      
-        """elif self.rover.direction == "S":
+        
+"""
+        elif self.rover.direction == "S":
             self.y -= 1
             return self.y
         elif self.rover.direction == "W":
