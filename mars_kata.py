@@ -21,8 +21,6 @@ class Rover(object):
             idx_r = ((options.index(self.direction) - 1) % 4)
             self.direction = options[idx_r]
 
-
-
     def move(self):
         if self.direction == "N":
             self.y += 1
@@ -32,6 +30,15 @@ class Rover(object):
             self.x -= 1
         elif self.direction == "E":
             self.x += 1
+
+    def read(self, string):
+        for x in string:
+            if x == "L" or x == "R":
+                self.rotate(x)
+            elif x == "M":
+                self.move()
+            else:
+                raise "Error"
 
 
 
@@ -53,22 +60,28 @@ class testRover(unittest.TestCase):
             self.rover.move()
             after = self.rover.y
             self.assertEqual(before + 1, after)      
-        
-"""
-        elif self.rover.direction == "S":
-            self.y -= 1
-            return self.y
-        elif self.rover.direction == "W":
-            self.x -= 1
-            return self.x
-        elif self.rover.direction == "E":
-            self.x += 1
-            return self.x
-"""
-#        move_W = self.rover.move()
- #       self.assertEqual(move_W, self.rover.x)    
-   
 
+        elif self.rover.direction == "S":
+            before = self.rover.y
+            self.rover.move()
+            after = self.rover.y
+            self.assertEqual(before - 1, after)      
+        
+        elif self.rover.direction == "E":
+            before = self.rover.y
+            self.rover.move()
+            after = self.rover.y
+            self.asserEqual(before + 1, after) 
+
+        elif self.rover.direction == "W":
+            before = self.rover.x
+            self.rover.move()
+            after = self.rover.x
+            self.assertEqual(before - 1, after)      
+
+        else:
+            raise "Error"        
+ 
 
     def test_rotate(self):
         # successfully tested ability of the rover to rotate around its own axis
@@ -79,6 +92,11 @@ class testRover(unittest.TestCase):
         dir2 = self.rover.direction    
         self.assertEqual(dir1, dir2)
 
+    def test_read(self):
+        before_y = self.rover.y
+        self.rover.read("LLM")
+        self.assertEqual(before_y - 1, self.rover.y)
+        self.assertEqual(self.rover.direction, "S")      
 
 
 if __name__ == '__main__':
