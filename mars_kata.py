@@ -4,6 +4,17 @@ from london software craftsmanship group meetup on python katas
 """
 
 import unittest
+import random as rnd
+
+class Space(object):
+    def __init__(self, min_val, max_val, num_obstacles):
+        self.min_val = min_val
+        self.max_val = max_val
+        self.obstacles = []
+        for obs in xrange(num_obstacles):
+            obstacles.append((rnd.randint(min_val, max_val)))
+
+
 
 class Rover(object):
     def __init__(self, x, y, direction):
@@ -40,7 +51,7 @@ class Rover(object):
             else:
                 raise "Error"
 
-
+        return self.x, self.y, self.direction
 
 class testRover(unittest.TestCase):
     def setUp(self):
