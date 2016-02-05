@@ -8,13 +8,19 @@ import random as rnd
 
 class Space(object):
     def __init__(self, min_val, max_val, num_obstacles):
+        """
+define a Space class, which is initialised with 
+* min and max value integers for the grid
+* number of obstacles, used to randomly place them on the grid
+
+        """
         self.min_val = min_val
         self.max_val = max_val
+        self.num_obstacles = num_obstacles
         self.obstacles = []
-        for obs in xrange(num_obstacles):
-            obstacles.append((rnd.randint(min_val, max_val)))
-
-
+        for obs in xrange(self.num_obstacles):
+            self.obstacles.append((rnd.randint(min_val, max_val), 
+                              rnd.randint(min_val, max_val)))
 
 class Rover(object):
     def __init__(self, x, y, direction):
@@ -108,6 +114,16 @@ class testRover(unittest.TestCase):
         self.rover.read("LLM")
         self.assertEqual(before_y - 1, self.rover.y)
         self.assertEqual(self.rover.direction, "S")      
+
+class testSpace(unittest.TestCase):
+    def setUp(self):
+        self.space = Space(-10, 10, 5)
+
+    def test_num_obstacles(self):
+        self.assertEqual(len(self.space.obstacles), self.space.num_obstacles)
+
+    def test_obstacles_within_grid(self):
+        pass
         
 
 if __name__ == '__main__':
