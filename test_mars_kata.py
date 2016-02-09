@@ -21,29 +21,23 @@ class testRover(unittest.TestCase):
         self.assertTrue(self.rover.min_val <= self.rover.x <= self.rover.max_val)
         
     def test_move(self):
+        before_x = self.rover.x
+        before_y = self.rover.y
+        self.rover.move()
+        after_x = self.rover.x
+        after_y = self.rover.y
+            
         if self.rover.direction == "N":
-            before = self.rover.y
-            self.rover.move()
-            after = self.rover.y
-            self.assertEqual(before + 1, after)      
+            self.assertEqual(before_y + 1, after_y)      
 
         elif self.rover.direction == "S":
-            before = self.rover.y
-            self.rover.move()
-            after = self.rover.y
-            self.assertEqual(before - 1, after)      
+            self.assertEqual(before_y - 1, after_y)      
         
         elif self.rover.direction == "E":
-            before = self.rover.y
-            self.rover.move()
-            after = self.rover.y
-            self.asserEqual(before + 1, after) 
+            self.asserEqual(before_x + 1, after_x) 
 
         elif self.rover.direction == "W":
-            before = self.rover.x
-            self.rover.move()
-            after = self.rover.x
-            self.assertEqual(before - 1, after)      
+            self.assertEqual(before_x - 1, after_x)      
 
         else:
             raise "Error"        
