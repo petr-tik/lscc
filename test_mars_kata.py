@@ -1,20 +1,24 @@
-#! usr/bin/env python
+#!usr/bin/env python
 
 import unittest
 import random as rnd
-from mars_kata import Space, Rover
+from mars_kata import Rover
+
+print "\n\n\n\n..........................."
+print "Starting tests"
+print "...........................\n\n\n\n"
 
 class testRover(unittest.TestCase):
     def setUp(self):
-        self.rover = Rover(0, 0, "N")
+        self.rover = Rover(0, 0, "N", -5, 5, 5)
         
     def test_dir(self):        
         direction = self.rover.direction
-        self.assertEqual(direction, "N")
+        self.assertIn(direction, ["N", "S", "E", "W"])
 
     def test_pos(self):
-        x = self.rover.x
-        self.assertEqual(x, 0)
+        self.assertTrue(self.rover.min_val <= self.rover.y <= self.rover.max_val)
+        self.assertTrue(self.rover.min_val <= self.rover.x <= self.rover.max_val)
         
     def test_move(self):
         if self.rover.direction == "N":
@@ -60,16 +64,9 @@ class testRover(unittest.TestCase):
         self.assertEqual(before_y - 1, self.rover.y)
         self.assertEqual(self.rover.direction, "S")      
 
-class testSpace(unittest.TestCase):
-    def setUp(self):
-        self.space = Space(-10, 10, 5)
-
     def test_num_obstacles(self):
-        self.assertEqual(len(self.space.obstacles), self.space.num_obstacles)
-
-    def test_obstacles_within_grid(self):
-        pass
+        self.assertLessEqual(len(self.rover.obstacles), self.rover.num_obstacles)
         
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=10)

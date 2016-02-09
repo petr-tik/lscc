@@ -41,6 +41,7 @@ class Rover(object):
             self.x -= 1
         elif self.direction == "E":
             self.x += 1
+        
 
     def read(self, string):
         for x in string:
@@ -57,16 +58,6 @@ class Rover(object):
 
 
 
-
-
-rov = Rover(0,0, "N", -2, 2, 4)
-print rov.obstacles
-print (rov.x, rov.y, rov.direction)
-
-for x in "MLMRMLMRML":
-    print "read %s" % x
-    rov.read(x)
-    print (rov.x, rov.y, rov.direction)
 
 
 
