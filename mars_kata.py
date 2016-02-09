@@ -6,21 +6,21 @@ from london software craftsmanship group meetup on python katas
 import unittest
 import random as rnd
 
-class Space(object):
-    def __init__(self, min_val, max_val, num_obstacles):
+        
+class Rover(object):
+    def __init__(self, x, y, direction, min_val, max_val, num_obstacles):
+        self.x = x
+        self.y = y
+        self.direction = direction
         self.min_val = min_val
         self.max_val = max_val
         self.num_obstacles = num_obstacles
         self.obstacles = []
         for obs in xrange(self.num_obstacles):
-            self.obstacles.append((rnd.randint(min_val, max_val), 
-                              rnd.randint(min_val, max_val)))
+            new = (rnd.randint(min_val, max_val), rnd.randint(min_val, max_val))
+            if new not in self.obstacles:
+                self.obstacles.append(new)
 
-class Rover(object):
-    def __init__(self, x, y, direction):
-        self.x = x
-        self.y = y
-        self.direction = direction
 
     def rotate(self, way):
         options = ["N", "W", "S", "E"]
@@ -47,13 +47,26 @@ class Rover(object):
             if x == "L" or x == "R":
                 self.rotate(x)
             elif x == "M":
-                self.move()
+                if (self.x, self.y) in self.obstacles:
+                    return "N"
+                else: self.move()
             else:
                 raise "Error"
 
         return self.x, self.y, self.direction
 
 
+
+
+
+rov = Rover(0,0, "N", -2, 2, 4)
+print rov.obstacles
+print (rov.x, rov.y, rov.direction)
+
+for x in "MLMRMLMRML":
+    print "read %s" % x
+    rov.read(x)
+    print (rov.x, rov.y, rov.direction)
 
 
 
