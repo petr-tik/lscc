@@ -41,7 +41,6 @@ class Rover(object):
             self.x -= 1
         elif self.direction == "E":
             self.x += 1
-        
 
     def read(self, string):
         for x in string:
@@ -49,7 +48,7 @@ class Rover(object):
                 self.rotate(x)
             elif x == "M":
                 if (self.x, self.y) in self.obstacles:
-                    return "N"
+                    print "N"
                 else: self.move()
             else:
                 raise "Error"

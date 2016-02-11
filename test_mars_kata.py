@@ -44,7 +44,7 @@ class testRover(unittest.TestCase):
  
 
     def test_rotate(self):
-        # successfully tested ability of the rover to rotate around its own axis
+        # successfully tested ability of the rover to rotate around its own axis and get back to original direction
 
         dir1 = self.rover.direction        
         for x in xrange(4):
@@ -53,6 +53,7 @@ class testRover(unittest.TestCase):
         self.assertEqual(dir1, dir2)
 
     def test_read(self):
+        # might fail, as obstacles generated randomly
         before_y = self.rover.y
         self.rover.read("LLM")
         self.assertEqual(before_y - 1, self.rover.y)
