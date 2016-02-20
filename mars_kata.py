@@ -2,11 +2,10 @@
 """
 from london software craftsmanship group meetup on python katas
 """
-
+from collections import deque
 import unittest
 import random as rnd
 
-        
 class Rover(object):
     def __init__(self, x, y, direction, min_val, max_val, num_obstacles):
         self.x = x
@@ -23,14 +22,15 @@ class Rover(object):
 
 
     def rotate(self, way):
-        options = ["N", "W", "S", "E"]
+        options = deque(["N", "W", "S", "E"])
         if way == "L":
-            idx_l = (options.index(self.direction) + 1) % 4        
-            self.direction = options[idx_l]            
+            options.rotate(1)
+
 
         elif way == "R":
-            idx_r = ((options.index(self.direction) - 1) % 4)
-            self.direction = options[idx_r]
+            options.rotate(-1)
+
+            self.direction = options[0]
 
     def move(self):
         if self.direction == "N":
